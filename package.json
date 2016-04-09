@@ -81,7 +81,6 @@
         "postcss-cli": "^2.5.1",
         "sane": "^1.3",
         "surge": "^0.17",
-        "universal-utils": "^0.2",
         "watchify": "^3.7",
         "vtop": "^0.5"
     },
