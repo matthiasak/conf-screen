@@ -29,6 +29,11 @@ import fetch from "isomorphic-fetch"
 //         console.error('registration failed')
 //             // Registration failed
 //     })
+//
+//     const unregister = () => navigator.serviceWorker.getRegistrations().then(registrations => {
+//         for (let registration of registrations) {registration.unregister()}
+//     })
+//     window.unregister = unregister
 // } else {
 //     // No ServiceWorker Support
 // }

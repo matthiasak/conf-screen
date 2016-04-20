@@ -1,4 +1,4 @@
-var CACHE_NAME = 'arbiter'
+var CACHE_NAME = 'boilerplate'
     // The files we want to cache
 var urlsToCache = [
     '/',
