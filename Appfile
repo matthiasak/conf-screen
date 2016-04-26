@@ -4,7 +4,7 @@ application {
 }
 
 customization "node" {
-    node_version = ">=5"
+    node_version = ">=6"
 }
 
 project {
