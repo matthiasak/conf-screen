@@ -50,7 +50,7 @@
     "server": "node app.js",
     "s": "npm-run-all --parallel watch server",
     "start": "npm-run-all server",
-    "start:n": "npm-run-all --parallel watch:* server",
+    "n": "npm-run-all --parallel watch:* server",
     "top": "vtop",
     "test": "ava test/main.js",
     "bower": "bower install --allow-root",

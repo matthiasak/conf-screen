@@ -54,10 +54,10 @@ More info about Koa v2 here: https://github.com/koajs/koa/tree/v2.x
 3. Start your server:
 
     ```sh
-    npm start
+    npm run s
 
     # Alternatively, if doing server-side work
-    # npm run start:n
+    # npm run n
     ```
 
 4. Ready to push your code to heroku?
