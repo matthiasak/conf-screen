@@ -26,7 +26,7 @@ import fetch from "isomorphic-fetch"
 //         // Registration was successful
 //         console.info('registration success')
 //     }).catch(() => {
-//         console.error('registration failed')
+//         console.log('registration failed', e)
 //             // Registration failed
 //     })
 //
