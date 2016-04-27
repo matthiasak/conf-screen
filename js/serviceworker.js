@@ -1,13 +1,11 @@
 var CACHE_NAME = 'boilerplate'
-    // The files we want to cache
+// The files we want to cache
 var urlsToCache = [
-    '/',
+    './',
     './index.html',
     './style.css',
-    './app.js',
-    // './polyfill.js',
+    './app.js'
     // './serviceworker.js',
-    // './worker.html'
 ]
 
 // Set the callback for the install step
@@ -66,15 +64,15 @@ self.addEventListener('fetch', (event) => {
     )
 })
 
-// self.addEventListener('activate', (event) => {
-//     console.log('activating', event)
-//     event.waitUntil(
-//         caches.keys().then((cacheNames) => {
-//             return Promise.all(
-//                 cacheNames.map((cacheName) =>
-//                     // cacheName !== CACHE_NAME &&
-//                     caches.delete(cacheName))
-//             )
-//         })
-//     )
-// })
+self.addEventListener('activate', (event) => {
+    console.log('activating', event)
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) =>
+                    // cacheName !== CACHE_NAME &&
+                    caches.delete(cacheName))
+            )
+        })
+    )
+})
