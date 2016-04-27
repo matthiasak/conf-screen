@@ -54,22 +54,20 @@ ul, ol {
     }
 }
 
-@mixin grid_r($col, $width, $padding: 0) {
-    @media screen and (min-width: #{$width}px) {
+@mixin grid_r($col, $width) {
+    @media only screen and (min-width: #{$width}px) {
         .grid-#{$col}-#{$width} {
             & > * {
-                width: #{100/$col}%;
-                padding: #{$padding}px;
+                flex-basis: #{100 / $col}#{%};
             }
         }
     }
 }
 
-@mixin grid($col, $padding: 0) {
+@mixin grid($col) {
     .grid-#{$col} {
         & > * {
-            width: #{100/$col}%;
-            padding: #{$padding}px;
+            flex-basis: #{100 / $col}#{%};
         }
     }
 }
