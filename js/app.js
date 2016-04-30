@@ -12,7 +12,6 @@ import fetch from "isomorphic-fetch"
 // the following line, if uncommented, will enable browserify to push
 // a changed fn to you, with source maps (reverse map from compiled
 // code line # to source code line #), in realtime via websockets
-// -- browserify-hmr having install issues right now
 // if (module.hot) {
 //     module.hot.accept()
 //     module.hot.dispose(() => {
