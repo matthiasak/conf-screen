@@ -116,10 +116,10 @@
     "webworkify": "^1"
   },
   "devDependencies": {
-    "ava": ">=0.11",
+    "ava": "^0.11",
     "esdoc": "^0.4",
-    "esdoc-es7-plugin": ">=0.0",
-    "nsp": ">=2.0",
-    "surge": ">=0.17"
+    "esdoc-es7-plugin": "^0.0",
+    "nsp": "^2.0",
+    "surge": "^0.17"
   }
 }
