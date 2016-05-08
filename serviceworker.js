@@ -3,11 +3,10 @@
 
 var CACHE_NAME = 'boilerplate';
 // The files we want to cache
-var urlsToCache = ['/', './index.html', './style.css', './app.js'];
-
-// './polyfill.js',
+var urlsToCache = ['./', './index.html', './style.css', './app.js'
 // './serviceworker.js',
-// './worker.html'
+];
+
 // Set the callback for the install step
 self.addEventListener('install', function (event) {
     // console.log('installing', event)
@@ -60,17 +59,16 @@ self.addEventListener('fetch', function (event) {
     }));
 });
 
-// self.addEventListener('activate', (event) => {
-//     console.log('activating', event)
-//     event.waitUntil(
-//         caches.keys().then((cacheNames) => {
-//             return Promise.all(
-//                 cacheNames.map((cacheName) =>
-//                     // cacheName !== CACHE_NAME &&
-//                     caches.delete(cacheName))
-//             )
-//         })
-//     )
-// })
+self.addEventListener('activate', function (event) {
+    console.log('activating', event);
+    event.waitUntil(caches.keys().then(function (cacheNames) {
+        return Promise.all(cacheNames.map(function (cacheName) {
+            return(
+                // cacheName !== CACHE_NAME &&
+                caches.delete(cacheName)
+            );
+        }));
+    }));
+});
 },{}]},{},[1])
 //# sourceMappingURL=serviceworker.js.map
