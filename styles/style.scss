@@ -1,5 +1,5 @@
-@import "../bower_components/normalize-scss/_normalize.scss";
-@import "../bower_components/typeplate-starter-kit/scss/_typeplate.scss";
+@import "../bower_components/normalize-scss/normalize.css";
+@import "../bower_components/typeplate-starter-kit/css/typeplate.css";
 
 p+p {
     text-indent: 0;
@@ -27,7 +27,7 @@ ul, ol {
 *:after {
     box-sizing: border-box;
     transition-duration: 0.2s;
-    transition-property: all;//opacity, transform, color, background-color, border-color, z-index, background-image;
+    transition-property: all;/*opacity, transform, color, background-color, border-color, z-index, background-image;*/
     transition-timing-function: ease;
 }
 
@@ -54,34 +54,34 @@ ul, ol {
     }
 }
 
-@mixin grid_r($col, $width) {
+@define-mixin grid_r $col, $width {
     @media only screen and (min-width: #{$width}px) {
-        .grid-#{$col}-#{$width} {
+        .grid-$(col)-$(width) {
             & > * {
-                flex-basis: #{100 / $col}#{%};
+                flex-basis: calc(100 / $col)%;
             }
         }
     }
 }
 
-@mixin grid($col) {
-    .grid-#{$col} {
+@define-mixin grid $col {
+    .grid-$(col) {
         & > * {
-            flex-basis: #{100 / $col}#{%};
+            flex-basis: calc(100 / $col)%;
         }
     }
 }
 
-@include grid(2);
-@include grid(4);
-@include grid(8);
-@include grid_r(2,400);
-@include grid_r(2,800);
-@include grid_r(4,400);
-@include grid_r(4,800);
-@include grid_r(8,800);
-@include grid_r(8,1024);
-@include grid_r(8,1280);
+@mixin grid 2;
+@mixin grid 4;
+@mixin grid 8;
+@mixin grid_r 2, 400;
+@mixin grid_r 2, 800;
+@mixin grid_r 4, 400;
+@mixin grid_r 4, 800;
+@mixin grid_r 8, 800;
+@mixin grid_r 8, 1024;
+@mixin grid_r 8, 1280;
 
 /**
  * GENERAL
