@@ -55,10 +55,10 @@ ul, ol {
 }
 
 @define-mixin grid_r $col, $width {
-    @media only screen and (min-width: #{$width}px) {
+    @media (min-width: $(width)px) {
         .grid-$(col)-$(width) {
             & > * {
-                flex-basis: calc(100 / $col)%;
+                width: calc(100 / $col)%;
             }
         }
     }
@@ -67,7 +67,7 @@ ul, ol {
 @define-mixin grid $col {
     .grid-$(col) {
         & > * {
-            flex-basis: calc(100 / $col)%;
+            width: calc(100 / $col)%;
         }
     }
 }
@@ -76,6 +76,7 @@ ul, ol {
 @mixin grid 4;
 @mixin grid 8;
 @mixin grid_r 2, 400;
+@mixin grid_r 2, 640;
 @mixin grid_r 2, 800;
 @mixin grid_r 4, 400;
 @mixin grid_r 4, 800;

@@ -77,13 +77,18 @@ Routes go here
 */
 
 // default proxying
-const replaceRemoteTokens = (req, webUrl, tokens=webUrl.match(/:(\w+)/ig)) =>
+const replaceRemoteTokens = (ctx, webUrl, tokens=webUrl.match(/:(\w+)/ig)) =>
     (tokens || []).reduce((a, t) =>
-        a.replace(new RegExp(t, 'ig'), req.params[t.substr(1)]), webUrl)
+        a.replace(new RegExp(t, 'ig'), ctx.params[t.substr(1)]), webUrl)
 
 const get = url =>
     new Promise((res,rej) => {
-        request(url, (error, response, body) => {
+        request({
+            url,
+            headers: {
+                'User-Agent': 'request'
+            }
+        }, (error, response, body) => {
             if(!error) { // && response.statusCode === 200
                 return res(body)
             }
@@ -94,7 +99,7 @@ const get = url =>
 const proxify = (router, localUrl, webUrl) => {
     router.get(localUrl, async (ctx, next) => {
         try {
-            var data = await get(replaceRemoteTokens(ctx.req, webUrl) + (ctx.req._parsedUrl.search || ''))
+            var data = await get(replaceRemoteTokens(ctx, webUrl) + (ctx.req._parsedUrl.search || ''))
         } catch(e) {
             ctx.body = e
             return
