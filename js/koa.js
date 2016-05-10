@@ -26,6 +26,7 @@ import rt from 'koa-response-time'
 
 import enforceHttps from 'koa-sslify'
 const config = require('../config.json')
+
 if(config.https){
     if(config.heroku){
         app.use(enforceHttps({

@@ -15,22 +15,23 @@ const os = require('os')
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 var port = parseInt(process.argv[3] || process.env.PORT || 3000) //(process.getuid() === 0) ? 443 : 3000
-let LEX = require('letsencrypt-express')
-if(!IS_PROD) LEX = LEX.testing()
-const lex = LEX.create({
-    configDir: './build',
-    approveRegistration: (hostname, cb) => {
-        // leave `null` to disable automatic registration
-        // Note: this is the place to check your database to get the user associated with this domain
-        cb(null, {
-          domains: [hostname],
-          email: config.email, // user@example.com
-          agreeTos: true
-        })
-    }
-})
 
 if(config.https){
+    let LEX = require('letsencrypt-express')
+    if(!IS_PROD) LEX = LEX.testing()
+    const lex = LEX.create({
+        configDir: './build',
+        approveRegistration: (hostname, cb) => {
+            // leave `null` to disable automatic registration
+            // Note: this is the place to check your database to get the user associated with this domain
+            cb(null, {
+              domains: [hostname],
+              email: config.email, // user@example.com
+              agreeTos: true
+            })
+        }
+    })
+
     spdy.createServer(lex.httpsOptions, LEX.createAcmeResponder(lex, app.callback())).listen(port+1 || 443, function () {
         console.log('Listening at ', this.address())
     })
