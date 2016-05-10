@@ -30,10 +30,14 @@ const lex = LEX.create({
     }
 })
 
-spdy.createServer(lex.httpsOptions, LEX.createAcmeResponder(lex, app.callback())).listen(443, function () {
-    console.log('Listening at ', this.address())
-})
-http.createServer(app.callback()).listen(port || 80)
+if(config.https){
+    spdy.createServer(lex.httpsOptions, LEX.createAcmeResponder(lex, app.callback())).listen(port+1 || 443, function () {
+        console.log('Listening at ', this.address())
+    })
+    http.createServer(app.callback()).listen(port || 80)
+} else {
+    http.createServer(app.callback()).listen(port || 80)
+}
 
 const getServer = () => {
     // const server = spdy.createServer(credentials, app.callback())
