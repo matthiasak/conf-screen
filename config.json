@@ -1,5 +1,7 @@
 {
     "cluster": false,
-    "https": false,
-    "appName": "FILLMEIN"
+    "https": true,
+    "appName": "FILLMEIN",
+    "email": "matthiasak@gmail.com",
+    "heroku": true
 }

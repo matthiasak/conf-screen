@@ -16,13 +16,25 @@ import session from 'koa-session'
 // adapt pre Koa 2.0 middle ware to be compatible with Koa 2.0.
 import adapt from 'koa-convert'
 import etag from 'koa-etag'
-import Koa from 'koa'
+import koa from 'koa'
 import request from 'request'
 import passport from 'koa-passport'
-export const app = new Koa()
+export const app = new koa()
 
 const logger = Morgan('combined')
 import rt from 'koa-response-time'
+
+import enforceHttps from 'koa-sslify'
+const config = require('../config.json')
+if(config.https){
+    if(config.heroku){
+        app.use(enforceHttps({
+            trustProtoHeader: true
+        }))
+    } else {
+        app.use(enforceHttps())
+    }
+}
 
 //-- app.use(adapt(favicon(require.resolve('./dist/favicon.ico'))))
 app.use(adapt(rt()))
