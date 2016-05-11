@@ -32,12 +32,10 @@ if(config.https){
         }
     })
 
-    spdy.createServer(lex.httpsOptions, LEX.createAcmeResponder(lex, app.callback())).listen(port+1 || 443, function () {
-        console.log('Listening at ', this.address())
-    })
-    http.createServer(app.callback()).listen(port || 80)
+    spdy.createServer(lex.httpsOptions, LEX.createAcmeResponder(lex, app.callback())).listen(port+1 || 443, () => console.log('HTTPS::Listening at ', this.address()))
+    http.createServer(app.callback()).listen(port || 80, () => console.log('HTTP::Listening at ', this.address()))
 } else {
-    http.createServer(app.callback()).listen(port || 80)
+    http.createServer(app.callback()).listen(port || 80, () => console.log('HTTP::Listening at ', this.address()))
 }
 
 const getServer = () => {
