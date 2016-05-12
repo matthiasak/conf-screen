@@ -41,7 +41,7 @@ if (module.hot) {
 
 let data, navTo
 
-import test_data from './data'
+// import test_data from './data'
 
 const parseData = (str) => {
     // let data = test_data
@@ -74,11 +74,12 @@ const setData = (d) => {
 
 const onData = () => {
     data = parseData(location.hash.slice(1))
-    update()
+    app()
+    // update()
 }
 
 window.setData = setData
-window.addEventListener('haschange', onData)
+window.addEventListener('hashchange', onData)
 
 const info = (title='') =>
     m('.info',
@@ -90,8 +91,8 @@ const talk = (t,c='') => {
     return m('.talk'+c,
         t.people && t.people.length ? [
             m('h1', m('span', t.people[0].name)),
-            m('h4', m('span', t.people[0].twitter)),//, ' | ', t.people[0].github)),
-            m('h2', m('span', t.title)),
+            m('h3', m('span', t.people[0].twitter)),//, ' | ', t.people[0].github)),
+            m('h4', m('span', t.title)),
         ] : [
             m('h1', m('span', t.title)),
         ],
@@ -139,22 +140,40 @@ const APPVIEW = m => (prev, current, next, fadeOut) => {
     )
 }
 
+const makeCleanable = (fn) => {
+    let cleanup
+    return (...args) => {
+        cleanup && cleanup()
+        cleanup = fn(...args)
+    }
+}
+
 const start = (data, view, update = ()=>{}, root, mount) => {
     let nav = (to) => {
             let n = s[to || navTo]
             if (n && n !== current) return n
             return current
         },
-        s = data && data.schedule.sort(byStartTime),
-        current = data && (findCurrent(s) || nav(0)),
-        prev = data && findPrev(s, current),
-        next = data && findNext(s, current),
-        fadeOut = false
+        s,
+        current,
+        prev,
+        next,
+        fadeOut = false,
+        setVars = () => {
+            if(!data) return
+            s = data.schedule.sort(byStartTime)
+            current = (findCurrent(s) || nav(0))
+            prev = findPrev(s, current)
+            next = findNext(s, current)
+        }
 
-        // console.log(current, nav())
+    setVars()
 
-    setInterval(() => {
+    // console.log(current, nav())
+
+    let interval = setInterval(() => {
         if(!data) return
+        // setVars()
         let c = findCurrent(s)
         if(c !== current){
             navTo = null
@@ -173,13 +192,17 @@ const start = (data, view, update = ()=>{}, root, mount) => {
     }, 1000)
 
     mount(() => data ? view(prev, nav(), next, fadeOut) : m('div'), root)
+
+    return () => {
+        clearInterval(interval)
+    }
 }
 
 const app = () => {
     let view = APPVIEW(m)
-    onData()
     start(data, view, update, qs(), mount)
 }
 
+onData()
 app()
 // new Date('May 14th, 2016, 9:00')

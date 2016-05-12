@@ -1,13 +1,13 @@
 const data = {
     hashtag: '#spacecityjs',
     schedule: [{
-        start: 'May 14 2016 06:00:00',
+        start: +new Date(+new Date + 1000) || 'May 14 2016 06:00:00',
         title: 'Coffee, Breakfast, and Registration',
     }, {
-        start: 'May 14 2016 08:45:00',
+        start: +new Date(+new Date + 5000) || 'May 14 2016 08:45:00',
         title: 'Kickoff',
     }, {
-        start: 'May 14 2016 09:00:00',
+        start: +new Date(+new Date + 9000) || 'May 14 2016 09:00:00',
         people: [{
             name: 'Evan Morikawa',
             twitter: '@e0m',
@@ -42,7 +42,7 @@ const data = {
         title: 'Lunch',
     }, {
         start: 'May 14 2016 13:30',
-        title: 'Ronald McDonald Project - charity hackathon results and demo',
+        title: 'Ronald McDonald House Charities Project',
     }, {
         start: 'May 14 2016 14:00',
         people: [{

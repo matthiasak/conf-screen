@@ -168,12 +168,21 @@ body {
 
             @for $i from 1 to 6 {
                 h$(i) {
-                    font-size: calc(10 - ($i - 1) * 2)vw;
+                    font-size: calc(15 - ($i - 1) * 2)vw;
+                }
+            }
+
+            @media (min-width: 800px){
+                @for $i from 1 to 6 {
+                    h$(i) {
+                        font-size: calc(10 - ($i - 1) * 2)vw !important;
+                    }
                 }
             }
 
             h1,h2,h3,h4,h5,h6 {
                 color: #ddd;
+                transform: translateX(-100%);
 
                 & > span {
                     background-color: rebeccapurple;
