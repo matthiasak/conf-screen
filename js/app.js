@@ -109,10 +109,10 @@ const sub = (t,c='') => {
     if(!t) return ''
 
     return m('.next'+c,
-        {style:{'background-color': data.colors.toolbar}},
+        {style:{'background-color': data.colors.toolbar, color: data.colors.toolbar_font}},
         m('span', 'Up next: '),
         m('h6',
-            {color: data.colors.toolbar_font},
+            {style: {color: data.colors.toolbar_font}},
             m('span', time(t.start)),
             t.people && t.people.length ? [
                 ' - ',
