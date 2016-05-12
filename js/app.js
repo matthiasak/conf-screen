@@ -82,19 +82,22 @@ window.setData = setData
 window.addEventListener('hashchange', onData)
 
 const info = (title='') =>
-    m('.info',
-        m('h5', title))
+    m('.info', {style:{'background-color': data.colors.toolbar}},
+        m('h5', {style:{color: data.colors.toolbar_font}}, title))
 
 const talk = (t,c='') => {
     if(!t) return ''
+
+    let style = {'background-color': data.colors.highlight, color: data.colors.main_font}
     // console.log(t)
     return m('.talk'+c,
+        {style:{'background-color': data.colors.background}},
         t.people && t.people.length ? [
-            m('h1', m('span', t.people[0].name)),
-            m('h3', m('span', t.people[0].twitter)),//, ' | ', t.people[0].github)),
-            m('h4', m('span', t.title)),
+            m('h1', {style}, m('span', t.people[0].name)),
+            m('h3', {style}, m('span', t.people[0].twitter)),//, ' | ', t.people[0].github)),
+            m('h4', {style}, m('span', t.title)),
         ] : [
-            m('h1', m('span', t.title)),
+            m('h1', {style}, m('span', t.title)),
         ],
 
         // m('h5', m('span', t.url)),
@@ -106,8 +109,10 @@ const sub = (t,c='') => {
     if(!t) return ''
 
     return m('.next'+c,
+        {style:{'background-color': data.colors.toolbar}},
         m('span', 'Up next: '),
         m('h6',
+            {color: data.colors.toolbar_font},
             m('span', time(t.start)),
             t.people && t.people.length ? [
                 ' - ',

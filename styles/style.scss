@@ -127,8 +127,11 @@ body {
  * App code
  */
 
+$gold: #BC7D37;
+$blue: #1F2D4D;
+
 body {
-    background-color: black;
+    // background-color: $gold;
     color: white;
     display: flex;
     height: 100vh;
@@ -145,7 +148,7 @@ body {
                 display: inline-block;
                 // color: red;
             }
-            background-color: #222;
+            // background-color: $gold;
             flex: 1;
             display: flex;
             padding-right: 1rem;
@@ -181,11 +184,11 @@ body {
             }
 
             h1,h2,h3,h4,h5,h6 {
-                color: #ddd;
+                color: #fff;
                 transform: translateX(-100%);
 
                 & > span {
-                    background-color: rebeccapurple;
+                    // background-color: $blue;
                     display: inline-block;
                     padding: 9 .25rem;
                 }
@@ -225,13 +228,13 @@ body {
                 // color: red;
             }
             padding-right: 1rem;
-            background-color: #222;
+            // background-color: $gold;
             flex: 1;
             max-height: 3em;
             text-align: right;
             h1,h2,h3,h4,h5,h6 {
                 // display: inline-block;
-                color: #ddd;
+                color: #fff;
             }
             /* &, & > * {
                 color: #555;

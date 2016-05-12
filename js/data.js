@@ -1,5 +1,12 @@
 const data = {
     hashtag: '#spacecityjs',
+    colors: {
+        background: '#BC7D37',
+        highlight: '#1F2D4D',
+        toolbar: '#BC7D37',
+        main_font: '#fff',
+        toolbar_font: '#fff'
+    },
     schedule: [{
         start: +new Date(+new Date + 1000) || 'May 14 2016 06:00:00',
         title: 'Coffee, Breakfast, and Registration',
