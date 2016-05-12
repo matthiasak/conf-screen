@@ -126,3 +126,118 @@ body {
 /**
  * App code
  */
+
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+    height: 100vh;
+
+    .container {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        overflow: hidden;
+
+        .info {
+            &:before {
+                // content: 'soon:';
+                display: inline-block;
+                // color: red;
+            }
+            background-color: #222;
+            flex: 1;
+            display: flex;
+            padding-right: 1rem;
+            h5 {
+                color: white;
+                flex: 1;
+                text-align: right;
+                line-height: 3em;
+            }
+
+            // max-height: 3em;
+            // text-align: right;
+            /* &, & > * {
+                color: #555;
+            } */
+        }
+
+        .talk {
+            flex:8;
+
+            @for $i from 1 to 6 {
+                h$(i) {
+                    font-size: calc(10 - ($i - 1) * 2)vw;
+                }
+            }
+
+            h1,h2,h3,h4,h5,h6 {
+                color: #ddd;
+
+                & > span {
+                    background-color: rebeccapurple;
+                    display: inline-block;
+                    padding: 9 .25rem;
+                }
+
+                @for $i from 1 to 20 {
+                    &:nth-child($i) {
+                        transition-delay: calc($i*.1)s !important;
+                    }
+                }
+            }
+        }
+
+        &.fadeout {
+            .talk {
+                h1,h2,h3,h4,h5,h6 {
+                    transition: all .5s ease-out;
+                    opacity: 0;
+                    transform: translateX(-100%);
+                }
+            }
+        }
+
+        &.fadein {
+            .talk {
+                h1,h2,h3,h4,h5,h6 {
+                    transition: all 1s ease-out;
+                    opacity: 1;
+                    transform: translateX(0px);
+                }
+            }
+        }
+
+        .next {
+            &:before {
+                // content: 'soon:';
+                display: inline;
+                // color: red;
+            }
+            padding-right: 1rem;
+            background-color: #222;
+            flex: 1;
+            max-height: 3em;
+            text-align: right;
+            h1,h2,h3,h4,h5,h6 {
+                // display: inline-block;
+                color: #ddd;
+            }
+            /* &, & > * {
+                color: #555;
+            } */
+        }
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
