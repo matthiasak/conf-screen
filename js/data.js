@@ -1,5 +1,6 @@
 const data = {
     hashtag: '#spacecityjs',
+    portrait: 1,
     logo: {
         url: "http://www.spacecity.codes/images/logo-black.svg"
     },

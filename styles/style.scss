@@ -26,8 +26,8 @@ ul, ol {
 *:before,
 *:after {
     box-sizing: border-box;
-    transition-duration: 0.2s;
-    transition-property: all;/*opacity, transform, color, background-color, border-color, z-index, background-image;*/
+    transition-duration: 0.5s;
+    transition-property: opacity, transform;
     transition-timing-function: ease;
 }
 
@@ -93,6 +93,7 @@ img {
 }
 body {
     font-family: 'San Francisco', 'Helvetica', 'Trebuchet MS', Arial, sans-serif;
+    animation: fade .25s both;
 }
 
 /**
@@ -127,21 +128,47 @@ body {
  * App code
  */
 
-html { overflow: hidden; }
+html { overflow: hidden; position: relative; background-color: black; }
 
 body {
     color: white;
     display: flex;
     height: 100vh;
+    position: relative;
     overflow: hidden;
 
+    &.portrait {
+
+        transform: translateX(100vw) rotate(90deg);
+        transform-origin: top left;
+        height: 100vw;
+        width: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        .slides {
+            padding: 2.5rem
+        }
+        word-break: break-word;
+
+        @for $i from 1 to 6 {
+            h$(i) {
+                font-size: calc(7 - ($i - 1) * 2)vw !important;
+            }
+        }
+    }
+
     .slides {
+        padding: 1rem;
         display: flex;
         flex: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
         flex-direction: column;
         overflow: hidden;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
 
         .info {
             &:before {
@@ -163,14 +190,14 @@ body {
 
             @for $i from 1 to 6 {
                 h$(i) {
-                    font-size: calc(15 - ($i - 1) * 2)vw;
+                    font-size: calc(10 - ($i - 1) * 2)vw;
                 }
             }
 
             @media (min-width: 800px){
                 @for $i from 1 to 6 {
                     h$(i) {
-                        font-size: calc(10 - ($i - 1) * 2)vw !important;
+                        font-size: calc(8 - ($i - 1) * 2)vw;
                     }
                 }
             }
@@ -249,8 +276,8 @@ body {
         padding: 1.5rem;
         top: 0;
         left: 0;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         display: flex;
         flex: 1;
         flex-wrap: wrap;
@@ -281,5 +308,14 @@ body {
     100% {
         opacity: 1;
         transform: translate(0);
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

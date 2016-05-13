@@ -41,11 +41,11 @@ if (module.hot) {
 
 let data, navTo, showSponsors
 
-// import test_data from './data'
+import test_data from './data'
 
-const parseData = (str) => {
+const parseData = (str='') => {
     // let data = test_data
-    let data = JSON.parse(str)
+    let data = str ? JSON.parse(str) : test_data
     data.schedule.map((v,i) => {
         v.start = new Date(v.start)
     })
@@ -74,6 +74,11 @@ const setData = (d) => {
 
 const onData = () => {
     data = parseData(location.hash.slice(1))
+    if(data) {
+        qs().classList.add('portrait')
+    } else {
+        qs().classList.remove('portrait')
+    }
     app()
     // update()
 }
@@ -175,6 +180,7 @@ const APPVIEW = m => (prev, current, next, fadeOut) => {
     return [
         m('.slides'+(fadeOut ? '.fadeout' : '.fadeout.fadein'),
             {
+                style: {'background-color': data.colors.background},
                 config: (el) => {
                     window.onkeyup = null
                     window.addEventListener('keyup', handleKeypress)
@@ -266,3 +272,4 @@ const app = () => {
 onData()
 app()
 // new Date('May 14th, 2016, 9:00')
+//
