@@ -41,11 +41,11 @@ if (module.hot) {
 
 let data, navTo, showSponsors
 
-import test_data from './data'
+// import test_data from './data'
 
 const parseData = (str) => {
-    let data = test_data
-    // let data = JSON.parse(str)
+    // let data = test_data
+    let data = JSON.parse(str)
     data.schedule.map((v,i) => {
         v.start = new Date(v.start)
     })

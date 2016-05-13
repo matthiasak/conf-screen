@@ -56,13 +56,13 @@ const data = {
     }],
     colors: { "sponsors": "#38454d", "background": "#1F2D4D", "highlight": "#1F2D4D", "toolbar": "#1F2D4D", "main_font": "#fff", "toolbar_font": "#ffda47" },
     schedule: [{
-        start: +new Date(+new Date + 1000) || 'May 14 2016 06:00:00',
+        start: 'May 14 2016 06:00:00',
         title: 'Coffee, Breakfast, and Registration',
     }, {
-        start: +new Date(+new Date + 5000) || 'May 14 2016 08:45:00',
+        start: 'May 14 2016 08:45:00',
         title: 'Kickoff',
     }, {
-        start: +new Date(+new Date + 9000) || 'May 14 2016 09:00:00',
+        start: 'May 14 2016 09:00:00',
         people: [{
             name: 'Evan Morikawa',
             twitter: '@e0m',
