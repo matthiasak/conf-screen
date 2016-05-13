@@ -74,7 +74,7 @@ const setData = (d) => {
 
 const onData = () => {
     data = parseData(location.hash.slice(1))
-    if(data) {
+    if(data.portrait) {
         qs().classList.add('portrait')
     } else {
         qs().classList.remove('portrait')
