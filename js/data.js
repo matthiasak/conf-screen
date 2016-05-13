@@ -1,12 +1,60 @@
 const data = {
     hashtag: '#spacecityjs',
-    colors: {
-        background: '#BC7D37',
-        highlight: '#1F2D4D',
-        toolbar: '#BC7D37',
-        main_font: '#fff',
-        toolbar_font: '#fff'
+    logo: {
+        url: "http://www.spacecity.codes/images/logo-black.svg"
     },
+    sponsors: [{
+        name: 'Poetic Systems',
+        url: 'http://poeticsystems.com',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/poetic.svg',
+        priority: 11
+    }, {
+        name: 'Texas Medical Center',
+        url: 'http://www.tmcinnovation.org/tmc-x/',
+        image: 'http://www.spacecity.codes/images/sponsors/2015/tmcx.png',
+        priority: 11
+    }, {
+        name: 'Toptal',
+        url: 'http://www.toptal.com/',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/toptal.svg',
+        priority: 11,
+        size: 'contain'
+    }, {
+        name: 'The Iron Yard',
+        url: 'http://theironyard.com',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/theironyard.svg',
+        priority: 11
+    }, {
+        name: 'Katz Coffee',
+        url: 'http://www.katzcoffee.com',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/katz.png',
+        priority: 1,
+        size: 'auto 75%'
+    }, {
+        name: 'Buffalo Bayou Brewery',
+        url: 'http://buffbrew.com/',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/buff-bayou.png',
+        priority: 1,
+        size: 'auto 75%'
+    }, {
+        name: 'St. Arnold\'s Brewing Company',
+        url: 'http://saintarnold.com/',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/starnold.jpg',
+        priority: 2,
+        size: 'auto 75%'
+    }, {
+        name: 'Karbach Brewing Company',
+        url: 'http://karbachbrewing.com/',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/karbach.png',
+        priority: 2
+    }, {
+        name: 'Town in City Brewing Company',
+        url: 'http://http://townincitybrewing.com',
+        image: 'http://www.spacecity.codes/images/sponsors/2016/town-in-city.png',
+        priority: 2,
+        size: 'auto 100%'
+    }],
+    colors: { "sponsors": "#38454d", "background": "#1F2D4D", "highlight": "#1F2D4D", "toolbar": "#1F2D4D", "main_font": "#fff", "toolbar_font": "#ffda47" },
     schedule: [{
         start: +new Date(+new Date + 1000) || 'May 14 2016 06:00:00',
         title: 'Coffee, Breakfast, and Registration',
@@ -84,10 +132,10 @@ const data = {
     }, {
         start: 'May 14 2016 17:25',
         title: 'Wrap Up!',
-    },{
+    }, {
         start: 'May 14 2016 17:45',
         title: 'After Party!',
-    }],
-    sponsors: []
+    }]
 }
+
 export default data
