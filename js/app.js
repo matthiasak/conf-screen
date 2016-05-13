@@ -247,7 +247,7 @@ const start = (data, view, update = ()=>{}, root, mount) => {
                 }, 500)
             }
         }, 1000),
-        setInterval(() => {
+        data.showSponsors && setInterval(() => {
             showSponsors = true
             update()
             setTimeout(() => {
@@ -260,7 +260,7 @@ const start = (data, view, update = ()=>{}, root, mount) => {
     mount(() => data ? view(prev, nav(), next, fadeOut) : m('div'), root)
 
     return () => {
-        intervals.map(i => clearInterval(i))
+        intervals.filter(x => !!x).map(i => clearInterval(i))
     }
 }
 
