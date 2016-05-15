@@ -1,103 +1,75 @@
-# Universal JS Boilerplate
+# Auto-Conf-Screen
 
-> **WARNING** This version of Universal JS Boilerplate uses Babel v6, which is **UNDER ACTIVE DEVELOPMENT**. The plugin system currently has a lot of issues, and the Babel v6 presets for ES2015/ES7 features are having a few difficulties as of Nov 6th, 2015. Noted among the currently non-working features are static and non-static class properties, decorators, and the destructuring of complex objects in function arguments.
+> – work your schedule, don't let it work you.
 
-This is a scaffolding project that includes boilerplate code for:
+# Why?
 
-- Node
-- Heroku configuration
-- Babel, Babel runtime, ES6/2015, ES7/2016
-- Node-sass, some example SCSS, grids, normalize and typeplate css kits (installed from bower)
-- Example files/resources
-- An example .gitignore for the project
-- A host of npm scripts for watching and building your files
-- Documentation and testing scaffolds
+Manually editing slides is annoying; especially if you're running an event/conference and want a feasible amount of control over which slides should be shown. We can't all use Keynote, or Powerpoint, or Google Slides / etc, either.
 
-# Major Changes
+This software / app is an attempt to parameterize everything one might need as JSON data, which we can put as a serialized string in the browser's hash route.
 
-## V2.0 - Koa v2 is now the serverside library handling requests
+Everything from colors, to sponsors, to speakers and times, and the hashtag or message, and the logo - are configurable through this object.
 
-This Koa v2 code has some default code setup for hosting code over HTTPS, as well as taking advantage of the SPDY & HTTP/2 protocols for even faster content delivery. Here's an overview of the features:
+For example, serializing the following Object:
 
-* Socket.io support with sticky-sessions (for HAProxy)
-* Clustering with the cluster module
-* Smart header support for ETags and conditional gets
-* Gzip compression on responses
-* Signed, cookie-based sessions
-* Request logging (morgan)
-* Static file serving
-* Favicon middleware
-* HTTP/2 and SPDY over TLS
-* Routing with async or sync routes (via Koa itself)
-* Support for Koa 1.0 and 2.0 middleware with koa-adapter
+```js
+{
+    hashtag: "#spacecityjs",
+    portrait: 0,
+    showSponsors: 1,
+    logo: { url: "http://www.spacecity.codes/images/logo-black.svg" },
+    colors: {
+        sponsors: "#38454d",
+        background: "#1F2D4D",
+        highlight: "#1F2D4D",
+        toolbar: "#1F2D4D",
+        main_font: "#fff",
+        toolbar_font: "#ffda47"
+    },
+    schedule: [
+        { start: "May 14 2016 06:00:00", title: "Coffee, Breakfast, and Registration" },
+        { start: "May 14 2016 08:45:00", title: "Kickoff" },
+        { start: "May 14 2016 09:00:00", people: [{ name: "Evan Morikawa", twitter: "@e0m" }], title: "Using Electron & React to Build N1: The Open Source Extensible Desktop Email Client" },
+        { start: "May 14 2016 09:50", people: [{ name: "Kent C Dodds", twitter: "@kentcdodds" }], title: "Managing an Open Source Project" },
+        { start: "May 14 2016 10:35", title: "Coffee Break!" },
+        { start: "May 14 2016 10:55", people: [{ name: "Kirsten Hunter", twitter: "@synedra" }], title: "Quantifying Your Fitness" },
+        { start: "May 14 2016 11:45", people: [{ name: "Collin Estes", twitter: "@collinestes" }], title: "Node @ NASA" },
+        { start: "May 14 2016 12:30", title: "Lunch" },
+        { start: "May 14 2016 13:30", title: "Ronald McDonald House Charities Project" },
+        { start: "May 14 2016 14:00", people: [{ name: "Lou Huang", twitter: "@saikofish" }], title: "Learning from Civic Technology: Apps and Interfaces for Engagement" },
+        { start: "May 14 2016 14:50", people: [{ name: "Slava Akhmechet", twitter: "@spakhm" }], title: "Making and Using Event-driven Databases @ RethinkDB" },
+        { start: "May 14 2016 15:35:00", title: "Coffee!" },
+        { start: "May 14 2016 15:55:00", people: [{ name: "Ben Vinegar", twitter: "@bentlegen" }], title: "JavaScript Error Reporting, and Why We Can't Have Nice Things" },
+        { start: "May 14 2016 16:40:00", people: [{ name: "Chris Oakman", twitter: "@oakmac1" }], title: "Lessons Learned from N Projects" },
+        { start: "May 14 2016 17:25", title: "Wrap Up!" }, { start: "May 14 2016 17:45", title: "After Party!" }
+    ],
+    sponsors: [
+        { name: "Poetic Systems", url: "http://poeticsystems.com", image: "http://www.spacecity.codes/images/sponsors/2016/poetic.svg", priority: 11 },
+        { name: "Texas Medical Center", url: "http://www.tmcinnovation.org/tmc-x/", image: "http://www.spacecity.codes/images/sponsors/2015/tmcx.png", priority: 11 },
+        { name: "Toptal", url: "http://www.toptal.com/", image: "http://www.spacecity.codes/images/sponsors/2016/toptal.svg", priority: 11, size: "contain" },
+        { name: "The Iron Yard", url: "http://theironyard.com", image: "http://www.spacecity.codes/images/sponsors/2016/theironyard.svg", priority: 11 },
+        { name: "Katz Coffee", url: "http://www.katzcoffee.com", image: "http://www.spacecity.codes/images/sponsors/2016/katz.png", priority: 1, size: "auto 75%" },
+        { name: "Buffalo Bayou Brewery", url: "http://buffbrew.com/", image: "http://www.spacecity.codes/images/sponsors/2016/buff-bayou.png", priority: 1, size: "auto 75%" },
+        { name: "St. Arnold's Brewing Company", url: "http://saintarnold.com/", image: "http://www.spacecity.codes/images/sponsors/2016/starnold.jpg", priority: 2, size: "auto 75%" },
+        { name: "Karbach Brewing Company", url: "http://karbachbrewing.com/", image: "http://www.spacecity.codes/images/sponsors/2016/karbach.png", priority: 2 },
+        { name: "Town in City Brewing Company", url: "http://http://townincitybrewing.com", image: "http://www.spacecity.codes/images/sponsors/2016/town-in-city.png", priority: 2, size: "auto 100%" }
+    ]
+}
+```
 
-More info about Koa v2 here: https://github.com/koajs/koa/tree/v2.x
+into a String and then injecting it into the hash with `window.location.hash = '#'+JSON.stringify(...)` will give the app the data it needs to render an entire, automated slide deck, complete with portrait and landscape modes, dynamic data, and the ability to control the current slide.
 
-# Getting Started
+To see the above code as an example app, open [this link](https://matthiasak.github.io/conf-screen/#{"hashtag":"#spacecityjs","portrait":0,"showSponsors":1,"logo":{"url":"http://www.spacecity.codes/images/logo-black.svg"},"sponsors":[{"name":"Poetic Systems","url":"http://poeticsystems.com","image":"http://www.spacecity.codes/images/sponsors/2016/poetic.svg","priority":11},{"name":"Texas Medical Center","url":"http://www.tmcinnovation.org/tmc-x/","image":"http://www.spacecity.codes/images/sponsors/2015/tmcx.png","priority":11},{"name":"Toptal","url":"http://www.toptal.com/","image":"http://www.spacecity.codes/images/sponsors/2016/toptal.svg","priority":11,"size":"contain"},{"name":"The Iron Yard","url":"http://theironyard.com","image":"http://www.spacecity.codes/images/sponsors/2016/theironyard.svg","priority":11},{"name":"Katz Coffee","url":"http://www.katzcoffee.com","image":"http://www.spacecity.codes/images/sponsors/2016/katz.png","priority":1,"size":"auto 75%"},{"name":"Buffalo Bayou Brewery","url":"http://buffbrew.com/","image":"http://www.spacecity.codes/images/sponsors/2016/buff-bayou.png","priority":1,"size":"auto 75%"},{"name":"St. Arnold's Brewing Company","url":"http://saintarnold.com/","image":"http://www.spacecity.codes/images/sponsors/2016/starnold.jpg","priority":2,"size":"auto 75%"},{"name":"Karbach Brewing Company","url":"http://karbachbrewing.com/","image":"http://www.spacecity.codes/images/sponsors/2016/karbach.png","priority":2},{"name":"Town in City Brewing Company","url":"http://http://townincitybrewing.com","image":"http://www.spacecity.codes/images/sponsors/2016/town-in-city.png","priority":2,"size":"auto 100%"}],"colors":{"sponsors":"#38454d","background":"#1F2D4D","highlight":"#1F2D4D","toolbar":"#1F2D4D","main_font":"#fff","toolbar_font":"#ffda47"},"schedule":[{"start":"May 14 2016 06:00:00","title":"Coffee, Breakfast, and Registration"},{"start":"May 14 2016 08:45:00","title":"Kickoff"},{"start":"May 14 2016 09:00:00","people":[{"name":"Evan Morikawa","twitter":"@e0m"}],"title":"Using Electron & React to Build N1: The Open Source Extensible Desktop Email Client"},{"start":"May 14 2016 09:50","people":[{"name":"Kent C Dodds","twitter":"@kentcdodds"}],"title":"Managing an Open Source Project"},{"start":"May 14 2016 10:35","title":"Coffee Break!"},{"start":"May 14 2016 10:55","people":[{"name":"Kirsten Hunter","twitter":"@synedra"}],"title":"Quantifying Your Fitness"},{"start":"May 14 2016 11:45","people":[{"name":"Collin Estes","twitter":"@collinestes"}],"title":"Node @ NASA"},{"start":"May 14 2016 12:30","title":"Lunch"},{"start":"May 14 2016 13:30","title":"Ronald McDonald House Charities Project"},{"start":"May 14 2016 14:00","people":[{"name":"Lou Huang","twitter":"@saikofish"}],"title":"Learning from Civic Technology: Apps and Interfaces for Engagement"},{"start":"May 14 2016 14:50","people":[{"name":"Slava Akhmechet","twitter":"@spakhm"}],"title":"Making and Using Event-driven Databases @ RethinkDB"},{"start":"May 14 2016 15:35:00","title":"Coffee!"},{"start":"May 14 2016 15:55:00","people":[{"name":"Ben Vinegar","twitter":"@bentlegen"}],"title":"JavaScript Error Reporting, and Why We Can't Have Nice Things"},{"start":"May 14 2016 16:40:00","people":[{"name":"Chris Oakman","twitter":"@oakmac1"}],"title":"Lessons Learned from N Projects"},{"start":"May 14 2016 17:25","title":"Wrap Up!"},{"start":"May 14 2016 17:45","title":"After Party!"}]}).
 
-1. Start your own project folder with a git clone, and if you plan to push this clone to GitHub, you'll need to change your origin:
+The code also exposes a `window.setData()` method that you can use to pass your own Objects, which will automatically update the hash route and draw the data to the screen for you.
 
-    ```sh
-    cd ~/Github\ Projects/
-    git clone git@github.com:matthiasak/universal-js-boilerplate.git NEWPROJECT
-    cd NEWPROJECT
-    git remote remove origin
-    git remote add origin YOUR_SSH_ADDRESS
-    ```
+# Contributing
 
-2. Install prerequisites
+Got an issue? Want to make a PR? This project may need a lot:
 
-    ```sh
-    npm install
-    ```
-
-3. Start your server:
-
-    ```sh
-    npm run s
-
-    # Alternatively, if doing server-side work
-    # npm run n
-    ```
-
-4. Ready to push your code to heroku?
-
-    ```sh
-    git commit -am "Let's do this"
-    heroku create <my app name>
-    git push heroku HEAD:master
-    ```
-
-5. Or are you pushing to gh-pages instead?
-
-    ```sh
-    npm run publish:gh-pages
-    ```
-
-6. Or are you using [surge.sh](http://surge.sh)?
-
-    ```sh
-    npm run publish:surge
-    # you may be prompted to login or signup,
-    # and then you'll be asked what URL to push to on surge.sh
-    ```
-
-    > Note: you can teardown a surge.sh URL with `npm run teardown`, which will prompt you for the URL to bring down
-
-7. Want to generate your own documentation with [esdocs](https://github.com/esdoc/esdoc)?
-
-    ```sh
-    # build docs and open locally
-    npm run docs
-    open dist/esdoc/index.html
-    # or build AND publish to gh-pages or to surge
-    npm run docs:gh-pages
-    npm run docs:surge
-    ```
-
-8. Need shields?
-
-    http://shields.io/
+- I want to parameterize more values and presentation styles
+- Tests!
+- New features... (hit up issues with a feature request)
 
 # License
 
