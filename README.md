@@ -69,6 +69,12 @@ Got an issue? Want to make a PR? This project may need a lot:
 - Tests!
 - New features... (hit up issues with a feature request)
 
+# Getting Started with a Local Installation
+
+1. clone this repo (or a fork of this repo)
+2. `npm i`
+3. `npm run s`
+
 # License
 
 MIT.
