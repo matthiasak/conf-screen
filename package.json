@@ -86,7 +86,7 @@
     "browserify": "^13.0",
     "browserify-hmr": "^0.3.1",
     "csswring": "^5.0.0",
-    "envify": "^3.4",
+    "envify": "^4.0.0",
     "exorcist": "^0.4",
     "forever": "^0.15.1",
     "isomorphic-fetch": "^2.2.1",
@@ -104,9 +104,9 @@
     "koa-serve-static": "^1.0.0",
     "koa-session": "^3.3.1",
     "koa-sslify": "^1.0.1",
-    "letsencrypt-express": "^1.1.5",
+    "letsencrypt-express": "^2.0.5",
     "moment": "^2.13.0",
-    "npm-run-all": "^1.2",
+    "npm-run-all": "^3.1.2",
     "postcss-calc": "^5.2.1",
     "postcss-cli": "^2.5.1",
     "precss": "^1.4.0",
@@ -121,10 +121,10 @@
     "webworkify": "^1"
   },
   "devDependencies": {
-    "ava": "^0.11",
+    "ava": "^0.17.0",
     "esdoc": "^0.4",
     "esdoc-es7-plugin": "^0.0",
     "nsp": "^2.0",
-    "surge": "^0.17"
+    "surge": "^0.18.0"
   }
 }
